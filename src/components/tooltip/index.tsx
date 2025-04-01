@@ -16,6 +16,10 @@ const tooltip = cva("tooltip rounded-lg px-1", {
 			tertiary: ["bg-tertiary-container", "text-on-tertiary-container",],
 			error: ["bg-error-container", "text-on-error-container",],
 		},
+		disabled: {
+			true: ["!bg-gray-300", "!text-gray-700"],
+			false: null
+		}
 	},
 
 	defaultVariants: {
@@ -31,6 +35,7 @@ export function Tooltip({
 	open,
 	defaultOpen,
 	onOpenChange,
+	disabled,
 	className,
 	...props
 }: TooltipProps) {
@@ -46,8 +51,7 @@ export function Tooltip({
 					{children}
 				</TooltipPrimitive.Trigger>
 				<TooltipPrimitive.Content side="top" align="center" {...props}>
-					<div className={cn(tooltip({action}), className)}>
-
+					<div className={cn(tooltip({action, disabled}), className)}>
 					{content}
 					</div>
 				</TooltipPrimitive.Content>
